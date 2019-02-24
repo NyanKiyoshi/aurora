@@ -40,10 +40,10 @@ func defaultMessageHandler(a *Aurora) interface{} {
 		if len(raw) == 1 {
 			return
 		}
-		trimmed := strings.Trim(raw[1], " ")
-		rawArgs := strings.Split(trimmed, " ")
-		var args []string
+
+		rawArgs := strings.Fields(raw[1])
 		cmd := rawArgs[0]
+		var args []string
 
 		if len(rawArgs) > 1 {
 			args = rawArgs[1:]
