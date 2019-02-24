@@ -35,13 +35,14 @@ func defaultMessageHandler(a *Aurora) interface{} {
 		if !isCommand {
 			return
 		}
-		raw := strings.SplitAfter(m.Content, prefix)
+		raw := m.Content[len(prefix):]
+		rawArgs := strings.Fields(raw)
+
 		// only the prefix was sent, no command
-		if len(raw) == 1 {
+		if raw == "" || len(rawArgs) < 1 {
 			return
 		}
 
-		rawArgs := strings.Fields(raw[1])
 		cmd := rawArgs[0]
 		var args []string
 
